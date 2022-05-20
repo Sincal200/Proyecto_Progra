@@ -42,6 +42,7 @@ public class Compra extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +119,8 @@ public class Compra extends javax.swing.JFrame {
 
         jButton2.setText("jButton2");
 
+        jButton3.setText("jButton3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,7 +138,10 @@ public class Compra extends javax.swing.JFrame {
                         .addComponent(jLabel7))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(380, 380, 380)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jButton3)))
                 .addContainerGap(342, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -149,7 +155,9 @@ public class Compra extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addComponent(jButton3)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         pack();
@@ -193,6 +201,7 @@ public class Compra extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
