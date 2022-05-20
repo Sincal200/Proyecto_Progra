@@ -94,7 +94,7 @@ public class Login extends javax.swing.JFrame {
         
         if(txtUsername.getText().equals(Usuario) && Pass.equals(Contraseña)){
             
-            Ventas VEN = new Ventas();
+            Compra VEN = new Compra();
             VEN.setVisible(true);
             dispose();
         }else{
