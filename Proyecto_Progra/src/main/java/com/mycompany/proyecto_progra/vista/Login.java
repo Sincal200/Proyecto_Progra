@@ -50,7 +50,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\GAMING\\Documents\\GitHub\\Proyecto_Progra\\Proyecto_Progra\\src\\main\\resources\\afdsaa.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/afdsaa.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
