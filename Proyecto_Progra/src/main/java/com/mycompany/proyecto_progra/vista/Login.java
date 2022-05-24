@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.proyecto_progra;
+package com.mycompany.proyecto_progra.vista;
 
+import com.mycompany.proyecto_progra.coneccciones.Compra;
 import javax.swing.JOptionPane;
 
 /**
