@@ -106,8 +106,9 @@ public class Login extends javax.swing.JFrame {
         String Pass = new String(jPasswordField1.getPassword());
         
         if(txtUsername.getText().equals(Usuario) && Pass.equals(Contraseña)){
-            
-            
+            Compra VEN = new Compra();
+            VEN.setVisible(true);
+            dispose();  
         }else{
             
             JOptionPane.showMessageDialog(this, "Usuario o Contraseña incorrecta");
