@@ -6,6 +6,10 @@ package com.mycompany.proyecto_progra.coneccciones;
 
 import com.mycompany.proyecto_progra.vista.MySqlConnector;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,12 +26,38 @@ public class Compra extends javax.swing.JFrame {
     public Compra() {
         initComponents();
         this.setLocationRelativeTo(null);
+        mostraDatos();
     }
     
     private void limpiar(){
         txtCantidad.setText("");
         txtPrecio.setText("");
         txtMonto.setText("");   
+    }
+    private void mostraDatos(){
+        try{
+            String[] titulos = {"code","product","uom","quantity","price","amount"};
+            String[] registros = new String[6];
+            DefaultTableModel model = new DefaultTableModel(null, titulos);
+            String consulta = "SELECT * FROM `purchase`";
+            Statement st = conexion.createStatement();
+            ResultSet result = st.executeQuery(consulta);
+            
+            while (result.next()){
+                registros[0] = result.getString("CODE");
+                registros[1] = result.getString("PRODUCT");
+                registros[2] = result.getString("UOM");
+                registros[3] = result.getString("QUANTITY");
+                registros[4] = result.getString("PRICE");
+                registros[5] = result.getString("AMOUNT");
+                model.addRow(registros);
+            }
+            
+            
+            tb1Producto.setModel(model);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Error al mostrad datos");
+        }
     }
 
     /**
@@ -81,6 +111,8 @@ public class Compra extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tb1Producto = new javax.swing.JTable();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
         jComboBox3 = new javax.swing.JComboBox<>();
@@ -337,14 +369,30 @@ public class Compra extends javax.swing.JFrame {
             .addComponent(jLabel19)
         );
 
+        tb1Producto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tb1Producto);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -365,7 +413,9 @@ public class Compra extends javax.swing.JFrame {
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -576,6 +626,7 @@ public class Compra extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextCode;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField4;
@@ -583,6 +634,7 @@ public class Compra extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable tb1Producto;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtMonto;
     private javax.swing.JTextField txtPrecio;
