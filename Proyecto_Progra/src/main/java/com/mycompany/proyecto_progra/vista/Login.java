@@ -50,6 +50,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Oxxo_Logo.svg (1).png"))); // NOI18N
         jLabel4.setText("jLabel4");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 180, 90));
 
@@ -150,6 +151,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 320, 370));
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paint-grunge-background_1409-1619.jpg"))); // NOI18N
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel3.setMaximumSize(new java.awt.Dimension(200, 200));
         jLabel3.setMinimumSize(new java.awt.Dimension(200, 200));
@@ -236,14 +238,6 @@ public class Login extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
