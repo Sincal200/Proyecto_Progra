@@ -16,7 +16,6 @@ public class MySqlConnector {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(db,usuario,pass);
-            JOptionPane.showMessageDialog(null, "Base de datos Conectada");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "ERROR Base de datos");
     }
