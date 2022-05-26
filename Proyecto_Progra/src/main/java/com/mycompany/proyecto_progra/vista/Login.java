@@ -80,7 +80,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jLabel2.setText("Password");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 110, -1));
 
         jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         jPasswordField1.setForeground(new java.awt.Color(204, 204, 204));
