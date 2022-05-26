@@ -6,6 +6,11 @@ package com.mycompany.proyecto_progra.coneccciones;
 
 import com.mycompany.proyecto_progra.vista.MySqlConnector;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +25,33 @@ public class inventario extends javax.swing.JFrame {
      */
     public inventario() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        mostraDatos();
+    }
+    private void mostraDatos(){
+        try{
+            String[] titulos = {"code", "producto", "oum", "quantity", "price", "amount"};
+            String[] registros = new String [6];
+            DefaultTableModel model = new DefaultTableModel(null, titulos);
+            String consulta = "SELECT * FROM `purchase` ";
+            Statement st = conexion.createStatement();
+            ResultSet result = st.executeQuery(consulta);
+            
+            while (result.next()){
+                registros[0] = result.getString("CODE");
+                registros[1] = result.getString("PRODUCT");
+                registros[2] = result.getString("UOM");
+                registros[3] = result.getString("QUANTITY");
+                registros[4] = result.getString("PRICE");
+                registros[5] = result.getString("AMOUNT");
+                model.addRow(registros);
+            }
+            
+            jTable1.setModel(model);
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al mostrad datos");
+        }
     }
 
     /**
