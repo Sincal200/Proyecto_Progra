@@ -18,9 +18,9 @@
             <version>8.0.29</version>
         </dependency>
         <dependency>
-            <groupId>unknown.binary</groupId>
+            <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
-            <version>SNAPSHOT</version>
+            <version>RELEASE130</version>
         </dependency>
     </dependencies>
     <properties>
