@@ -28,6 +28,19 @@ public class inventario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         mostraDatos();
     }
+    private void guardarProducto(){
+        Producto nuevaProducto = new Producto();
+        nuevaProducto.setCode(jTable1.getColumnCount());
+        nuevaProducto.setProduct(jTable1.getColumnName(NORMAL));
+        nuevaProducto.setamount(jTable1.getColumnCount());
+        nuevaProducto.setprice(jTable1.convertColumnIndexToModel(ICONIFIED));
+        nuevaProducto.setquantity(jTable1.convertRowIndexToModel(ICONIFIED));
+        nuevaProducto.setuom(jTable1.getColumnName(NORMAL));
+        
+        JOptionPane.showMessageDialog(null, "Guardar existosamente");
+        
+        
+    }
     private void mostraDatos(){
         try{
             String[] titulos = {"code", "producto", "oum", "quantity", "price", "amount"};
@@ -86,6 +99,11 @@ public class inventario extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Modificar");
 
@@ -124,6 +142,10 @@ public class inventario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        guardarProducto();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
