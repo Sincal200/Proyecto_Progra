@@ -33,7 +33,7 @@ public class inventario extends javax.swing.JFrame {
             String[] titulos = {"code", "producto", "oum", "quantity", "price", "amount"};
             String[] registros = new String [6];
             DefaultTableModel model = new DefaultTableModel(null, titulos);
-            String consulta = "SELECT * FROM `purchase` ";
+            String consulta = "SELECT * FROM `purchase`;";
             Statement st = conexion.createStatement();
             ResultSet result = st.executeQuery(consulta);
             
