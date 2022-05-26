@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import com.mycompany.proyecto_progra.coneccciones.inventario;
 
 /**
  *
@@ -144,11 +143,6 @@ public class Compra extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(0, 255, 255));
         jButton6.setText("Inventory");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -572,12 +566,6 @@ public class Compra extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         limpiar();
     }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        inventario VEN = new inventario();
-        VEN.setVisible(true);
-        
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
