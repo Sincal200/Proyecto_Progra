@@ -556,7 +556,18 @@ public class Compra extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMontoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try{
+        
+        String OUM = (String) jComboBox2.getSelectedItem();
+        String []info = new String[6];
+        info[0] = jTextCode.getText();
+        info[1] = jTextProduct.getText();
+        info[2] = OUM;
+        info[3] = txtCantidad.getText();
+        info[4] = txtPrecio.getText();
+        info[5] = txtMonto.getText();
+        
+        if(Integer.parseInt (cantidad) >= Integer.parseInt (info[3])){
+            try{
                 String insert = "UPDATE `purchase` SET "
                 +"QUANTITY = QUANTITY - ? " 
                 +"WHERE CODE = ?";
@@ -568,16 +579,7 @@ public class Compra extends javax.swing.JFrame {
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Ingrese la cantidad a comprar");
             }
-        String OUM = (String) jComboBox2.getSelectedItem();
-        String []info = new String[6];
-        info[0] = jTextCode.getText();
-        info[1] = jTextProduct.getText();
-        info[2] = OUM;
-        info[3] = txtCantidad.getText();
-        info[4] = txtPrecio.getText();
-        info[5] = txtMonto.getText();
-        if(Integer.parseInt (cantidad) >= Integer.parseInt (info[3])){
-             modelo.addRow(info);
+            modelo.addRow(info);
             
             jTextCode.setText("");
             jTextProduct.setText("");
@@ -652,7 +654,7 @@ public class Compra extends javax.swing.JFrame {
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
             }else{
-                int diferencia = (Integer.parseInt (codigo) + Integer.parseInt (cantidad));
+                int diferencia = (Integer.parseInt (codigo) - Integer.parseInt (txtCantidad.getText()));
                 String dif = String.valueOf(diferencia);
                 String insert = "UPDATE `purchase` SET "
                 +"QUANTITY = QUANTITY + ? " 
