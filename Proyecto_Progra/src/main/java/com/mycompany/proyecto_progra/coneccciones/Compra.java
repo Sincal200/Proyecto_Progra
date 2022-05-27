@@ -573,6 +573,8 @@ public class Compra extends javax.swing.JFrame {
             jTextField7.setText(Double.toString(total));
             jTextField8.setText(Double.toString(total1));
             
+            
+            
         }else{
              JOptionPane.showMessageDialog(null, "No hay suficiente producto para vender");
         }
