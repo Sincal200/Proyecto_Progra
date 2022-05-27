@@ -557,8 +557,6 @@ public class Compra extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try{
-                /*int fila = tb1Producto.getSelectedRow();
-                String code = tb1Producto.getValueAt(fila, 0).toString();*/
                 String insert = "UPDATE `purchase` SET "
                 +"QUANTITY = QUANTITY - ? " 
                 +"WHERE CODE = ?";
@@ -568,7 +566,7 @@ public class Compra extends javax.swing.JFrame {
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "no funcionoxd");
+                JOptionPane.showMessageDialog(null, "Ingrese la cantidad a comprar");
             }
         String OUM = (String) jComboBox2.getSelectedItem();
         String []info = new String[6];
@@ -602,6 +600,18 @@ public class Compra extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        try{
+                String insert = "UPDATE `purchase` SET "
+                +"QUANTITY = QUANTITY + ? " 
+                +"WHERE CODE = ?";
+                PreparedStatement pst = conexion.prepareStatement(insert);
+                pst.setString(1, txtCantidad.getText());
+                pst.setString(2, jTextCode.getText());
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "error");
+            }
         int fila = tb1Producto.getSelectedRow();
         Double monto = Double.parseDouble(txtMonto.getText());
         if (fila>=0){
@@ -618,6 +628,7 @@ public class Compra extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        
         String OUM = (String) jComboBox2.getSelectedItem();
         String []info = new String[6];
         info[0] = jTextCode.getText();
@@ -626,6 +637,36 @@ public class Compra extends javax.swing.JFrame {
         info[3] = txtCantidad.getText();
         info[4] = txtPrecio.getText();
         info[5] = txtMonto.getText();
+        String codigo = (String) modelo.getValueAt(tb1Producto.getSelectedRow(), 3);
+        System.out.println(codigo);
+        try{ 
+            if(Integer.parseInt (txtCantidad.getText()) > Integer.parseInt (codigo)){
+                int diferencia = (Integer.parseInt (txtCantidad.getText()) - Integer.parseInt (codigo));
+                String dif = String.valueOf(diferencia);
+                String insert = "UPDATE `purchase` SET "
+                +"QUANTITY = QUANTITY - ? " 
+                +"WHERE CODE = ?";
+                PreparedStatement pst = conexion.prepareStatement(insert);
+                pst.setString(1, dif);
+                pst.setString(2, jTextCode.getText());
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
+            }else{
+                int diferencia = (Integer.parseInt (codigo) + Integer.parseInt (cantidad));
+                String dif = String.valueOf(diferencia);
+                String insert = "UPDATE `purchase` SET "
+                +"QUANTITY = QUANTITY + ? " 
+                +"WHERE CODE = ?";
+                PreparedStatement pst = conexion.prepareStatement(insert);
+                pst.setString(1, dif);
+                pst.setString(2, jTextCode.getText());
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
+            }
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "error");
+            }
         
         for(int i = 0; i < tb1Producto.getColumnCount(); i++){
             modelo.setValueAt(info[i],filas,i);
