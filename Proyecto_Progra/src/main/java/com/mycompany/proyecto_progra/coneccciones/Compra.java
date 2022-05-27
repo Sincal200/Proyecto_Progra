@@ -22,6 +22,9 @@ public class Compra extends javax.swing.JFrame {
     Connection conexion = conector.conectar();
     
     public String cantidad = "";
+    public Double total = 0.00;
+    public Double parcial;
+    public Double operacion;
     Connection con = null;
     
     public Connection getConnection(){
@@ -276,6 +279,11 @@ public class Compra extends javax.swing.JFrame {
         jButton7.setText("New");
 
         jButton8.setText("Remove");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -556,6 +564,11 @@ public class Compra extends javax.swing.JFrame {
             txtCantidad.setText("");
             txtPrecio.setText("");
             txtMonto.setText("");
+            
+            parcial = Double.parseDouble(info[5]);
+            total = total + parcial;
+            jTextField7.setText(Double.toString(total));
+            
         }else{
              JOptionPane.showMessageDialog(null, "No hay suficiente producto para vender");
         }
@@ -565,8 +578,13 @@ public class Compra extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         int fila = tb1Producto.getSelectedRow();
+        Double monto = Double.parseDouble(txtMonto.getText());
         if (fila>=0){
             modelo.removeRow(fila);
+            operacion = total - monto;
+            jTextField7.setText(Double.toString(operacion));
+            total = operacion;
+            
         }else{
             JOptionPane.showMessageDialog(null, "Seleccionar Fila");
         }
@@ -598,6 +616,16 @@ public class Compra extends javax.swing.JFrame {
             filas = seleccion;
         
     }//GEN-LAST:event_tb1ProductoMouseClicked
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        int seleccion = tb1Producto.getSelectedRow();
+        jTextCode.setText(tb1Producto.getValueAt(seleccion,0).toString());
+            jTextProduct.setText(tb1Producto.getValueAt(seleccion,1).toString());
+            txtCantidad.setText(tb1Producto.getValueAt(seleccion,3).toString());
+            txtPrecio.setText(tb1Producto.getValueAt(seleccion,4).toString());
+            txtMonto.setText(tb1Producto.getValueAt(seleccion,5).toString());
+            filas = seleccion;
+    }//GEN-LAST:event_jButton8MouseClicked
 
     public static void main(String args[]) {
         
