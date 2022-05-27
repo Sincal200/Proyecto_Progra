@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Dell Latitude 3190
  */
 public class inventario extends javax.swing.JFrame {
+    
     MySqlConnector conector = new  MySqlConnector();
     Connection conexion = conector.conectar();
 
@@ -78,11 +79,12 @@ public class inventario extends javax.swing.JFrame {
         int fila = tblInventario.getSelectedRow();
         String code = tblInventario.getValueAt(fila, 0).toString();
         String insert = "UPDATE `purchase` SET "
-        + "`PRODUCT` = ?, "
-        + "`UOM` = , "
-        + "`QUANTITY` = ?, "
-        + "`PRICE` = ?,"
-        + " WHERE CODE = ?;";
+        + "Product = ? "
+        + "UOM = ? "
+        + "Quantity = ? "
+        + "Price = ?"
+        + " WHERE Code = ?";
+        
             PreparedStatement pst = conexion.prepareStatement(insert);
             pst.setString(1, nuevoinventario.getProduct());
             pst.setString(2, nuevoinventario.getuom());
@@ -99,23 +101,41 @@ public class inventario extends javax.swing.JFrame {
         
     }
     
+    private void eliminar(){
+    
+        try{
+        String delate = "DELETE FROM `purchase` WHERE `purchase`.`Code` = ? ";
+        PreparedStatement pst = conexion.prepareStatement(delate);
+        
+        int fila = tblInventario.getSelectedRow();
+        String code = tblInventario.getValueAt(fila, 0).toString();
+        
+        pst.setString(1,code);
+        pst.execute();
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar");
+        }
+        
+    }
+    
     
 
     private void mostraDatos(){
         try{
             String[] titulos = {"code", "producto", "oum", "quantity", "price"};
             String[] registros = new String [5];
+            
             DefaultTableModel model = new DefaultTableModel(null, titulos);
-            String consulta = "SELECT * FROM `purchase`;";
+            String consulta = "SELECT * FROM `purchase`";
             Statement st = conexion.createStatement();
             ResultSet result = st.executeQuery(consulta);
             
             while (result.next()){
-                registros[0] = result.getString("CODE");
-                registros[1] = result.getString("PRODUCT");
+                registros[0] = result.getString("Code");
+                registros[1] = result.getString("Product");
                 registros[2] = result.getString("UOM");
-                registros[3] = result.getString("QUANTITY");
-                registros[4] = result.getString("PRICE");
+                registros[3] = result.getString("Quantity");
+                registros[4] = result.getString("Price");
                 
                 model.addRow(registros);
             }
@@ -123,7 +143,7 @@ public class inventario extends javax.swing.JFrame {
             tblInventario.setModel(model);
             
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Error al mostrad datos");
+            JOptionPane.showMessageDialog(null, "Error al mostrar datos");
         }
     }
 
@@ -190,6 +210,11 @@ public class inventario extends javax.swing.JFrame {
         });
 
         jButton3.setText("Eliminar ");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Ocultar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -308,8 +333,10 @@ public class inventario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
         modificarinventario();
         mostraDatos();
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -324,8 +351,12 @@ public class inventario extends javax.swing.JFrame {
         txtquantity.setText(tblInventario.getValueAt(fila, 3).toString());
         txtprice.setText(tblInventario.getValueAt(fila, 4).toString());
         
-        
     }//GEN-LAST:event_tblInventarioMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        eliminar();
+        mostraDatos();  
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
