@@ -8,6 +8,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.mycompany.proyecto_progra.coneccciones.inventario;
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -67,6 +68,37 @@ public class Compra extends javax.swing.JFrame {
         jTextCode.setText("");
         jTextProduct.setText("");
     }
+    
+    private void modificarinventario(){
+         
+        try {
+        Producto nuevacompra = new Producto();
+        nuevacompra.setquantity(txtCantidad.getColumns());
+       
+        
+        int fila = tb1Producto.getSelectedRow();
+        String id = tb1Producto.getValueAt(fila, 0).toString();
+        String insert = "UPDATE `purchase` SET "    
+                + "`Quantity` = ? "
+                + "WHERE `persona`.`ID` = ?;";
+        
+            PreparedStatement pst = conexion.prepareStatement(insert);
+            pst.setString(1, nuevacompra.getCode());
+            pst.setString(2, nuevacompra.getApellido());
+            pst.setString(3, nuevacompra.getDireccion());
+            pst.setString(4, nuevacompra.getTelefono());
+            pst.setString(5, id);
+            
+            pst.execute();
+        JOptionPane.showMessageDialog(null, "Actualizacion guardada");
+         
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar");
+        }
+        
+    }
+        
+     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -74,6 +106,7 @@ public class Compra extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jTextProduct = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -92,7 +125,7 @@ public class Compra extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtMonto = new javax.swing.JTextField();
-        jTextProduct = new javax.swing.JTextField();
+        boxproduct = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -120,6 +153,10 @@ public class Compra extends javax.swing.JFrame {
         jButton2.setText("jButton2");
 
         jLabel7.setText("jLabel7");
+
+        jTextProduct.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextProduct.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextProduct.setEnabled(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -215,9 +252,7 @@ public class Compra extends javax.swing.JFrame {
             }
         });
 
-        jTextProduct.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextProduct.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextProduct.setEnabled(false);
+        boxproduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "huevos", "frijoles", "salchichas", "cebolla", "tomate" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -228,8 +263,8 @@ public class Compra extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextCode, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boxproduct, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -266,7 +301,7 @@ public class Compra extends javax.swing.JFrame {
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxproduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -327,7 +362,9 @@ public class Compra extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(226, 226, 226)
+                .addComponent(jScrollPane1))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,9 +588,10 @@ public class Compra extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
         String OUM = (String) jComboBox2.getSelectedItem();
+        String Product = (String) boxproduct.getSelectedItem();
         String []info = new String[6];
         info[0] = jTextCode.getText();
-        info[1] = jTextProduct.getText();
+        info[1] = Product;
         info[2] = OUM;
         info[3] = txtCantidad.getText();
         info[4] = txtPrecio.getText();
@@ -562,7 +600,6 @@ public class Compra extends javax.swing.JFrame {
              modelo.addRow(info);
              
             jTextCode.setText("");
-            jTextProduct.setText("");
             txtCantidad.setText("");
             txtPrecio.setText("");
             txtMonto.setText("");
@@ -600,9 +637,10 @@ public class Compra extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         String OUM = (String) jComboBox2.getSelectedItem();
+        String Product = (String) boxproduct.getSelectedItem();
         String []info = new String[6];
         info[0] = jTextCode.getText();
-        info[1] = jTextProduct.getText();
+        info[1] = Product;
         info[2] = OUM;
         info[3] = txtCantidad.getText();
         info[4] = txtPrecio.getText();
@@ -647,6 +685,7 @@ public class Compra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxproduct;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
