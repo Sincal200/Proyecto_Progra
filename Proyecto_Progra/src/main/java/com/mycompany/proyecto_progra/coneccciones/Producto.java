@@ -48,7 +48,7 @@ public class Producto {
     public double getprice() {
         return price;
     }
-    public void setprice(int price) {
+    public void setprice(double price) {
         this.price = price;
     }
     

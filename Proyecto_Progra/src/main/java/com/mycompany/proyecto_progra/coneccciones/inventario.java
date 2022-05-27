@@ -45,7 +45,7 @@ public class inventario extends javax.swing.JFrame {
         nuevoinventario.setProduct(txtProduct.getText().toString());
         nuevoinventario.setuom(txtoum.getText().toString());
         nuevoinventario.setquantity(Integer.parseInt(txtquantity.getText()));
-        nuevoinventario.setprice((int) Double.parseDouble(txtprice.getText()));
+        nuevoinventario.setprice(Double.parseDouble(txtprice.getText()));
         
         
         String insert = "INSERT INTO `purchase` (`Product`, `UOM`, `Quantity`, `Price`) "
@@ -75,7 +75,7 @@ public class inventario extends javax.swing.JFrame {
         nuevoinventario.setProduct(txtProduct.getText().toString());
         nuevoinventario.setuom(txtoum.getText().toString());
         nuevoinventario.setquantity(Integer.parseInt(txtquantity.getText()));
-        nuevoinventario.setprice((int) Double.parseDouble(txtprice.getText()));
+        nuevoinventario.setprice(Double.parseDouble(txtprice.getText()));
         
         int fila = tblInventario.getSelectedRow();
         String code = tblInventario.getValueAt(fila, 0).toString();
