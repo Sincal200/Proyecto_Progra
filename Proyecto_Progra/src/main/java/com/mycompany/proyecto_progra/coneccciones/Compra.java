@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
+
 public class Compra extends javax.swing.JFrame {
     
     int filas;
@@ -67,6 +68,12 @@ public class Compra extends javax.swing.JFrame {
         jTextCode.setText("");
         jTextProduct.setText("");
     }
+    
+    private void descontar(){
+        //Producto descontar = new Producto();( `Code`, `Product`, `OUM`, `Quantity`, `Price`, `Amount`)"
+                //+"VALUE ( ?, ?, ?, ?, ?, ?)
+        
+    }    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -549,7 +556,20 @@ public class Compra extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMontoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        try{
+                /*int fila = tb1Producto.getSelectedRow();
+                String code = tb1Producto.getValueAt(fila, 0).toString();*/
+                String insert = "UPDATE `purchase` SET "
+                +"QUANTITY = QUANTITY - ? " 
+                +"WHERE CODE = ?";
+                PreparedStatement pst = conexion.prepareStatement(insert);
+                pst.setString(1, txtCantidad.getText());
+                pst.setString(2, jTextCode.getText());
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "no funcionoxd");
+            }
         String OUM = (String) jComboBox2.getSelectedItem();
         String []info = new String[6];
         info[0] = jTextCode.getText();
@@ -560,7 +580,7 @@ public class Compra extends javax.swing.JFrame {
         info[5] = txtMonto.getText();
         if(Integer.parseInt (cantidad) >= Integer.parseInt (info[3])){
              modelo.addRow(info);
-             
+            
             jTextCode.setText("");
             jTextProduct.setText("");
             txtCantidad.setText("");
@@ -572,7 +592,6 @@ public class Compra extends javax.swing.JFrame {
             total1 = (total *0.12) + total;
             jTextField7.setText(Double.toString(total));
             jTextField8.setText(Double.toString(total1));
-            
             
             
         }else{
