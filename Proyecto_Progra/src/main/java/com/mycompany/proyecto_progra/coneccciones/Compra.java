@@ -25,6 +25,7 @@ public class Compra extends javax.swing.JFrame {
     public Double total = 0.00;
     public Double parcial;
     public Double operacion;
+    public Double total1;
     Connection con = null;
     
     public Connection getConnection(){
@@ -299,6 +300,8 @@ public class Compra extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel10.setText("Total");
 
+        jTextField6.setText("12%");
+
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -405,14 +408,13 @@ public class Compra extends javax.swing.JFrame {
                                 .addComponent(jButton7)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel10)
-                                .addComponent(jTextField6)
-                                .addComponent(jTextField8))
+                            .addComponent(jLabel10)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addGap(45, 45, 45))))
+                            .addComponent(jLabel9)
+                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(jLabel13)
@@ -567,7 +569,9 @@ public class Compra extends javax.swing.JFrame {
             
             parcial = Double.parseDouble(info[5]);
             total = total + parcial;
+            total1 = (total *0.12) + total;
             jTextField7.setText(Double.toString(total));
+            jTextField8.setText(Double.toString(total1));
             
         }else{
              JOptionPane.showMessageDialog(null, "No hay suficiente producto para vender");
@@ -584,6 +588,8 @@ public class Compra extends javax.swing.JFrame {
             operacion = total - monto;
             jTextField7.setText(Double.toString(operacion));
             total = operacion;
+            total1 = (total *0.12) + total;
+            jTextField8.setText(Double.toString(total1));
             
         }else{
             JOptionPane.showMessageDialog(null, "Seleccionar Fila");
