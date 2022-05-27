@@ -69,7 +69,8 @@ public class inventario extends javax.swing.JFrame {
     
     private void modificarinventario(){
         
-        try {
+    try {
+        
         Producto nuevoinventario = new Producto();
         nuevoinventario.setProduct(txtProduct.getText().toString());
         nuevoinventario.setuom(txtoum.getText().toString());
@@ -79,11 +80,11 @@ public class inventario extends javax.swing.JFrame {
         int fila = tblInventario.getSelectedRow();
         String code = tblInventario.getValueAt(fila, 0).toString();
         String insert = "UPDATE `purchase` SET "
-        + "Product = ? "
-        + "UOM = ? "
-        + "Quantity = ? "
-        + "Price = ?"
-        + " WHERE Code = ?";
+        + "PRODUCT = ?, "
+        + "UOM = ?, "
+        + "QUANTITY = ?, "
+        + "PRICE = ?"
+        + " WHERE CODE = ?";
         
             PreparedStatement pst = conexion.prepareStatement(insert);
             pst.setString(1, nuevoinventario.getProduct());
@@ -95,9 +96,9 @@ public class inventario extends javax.swing.JFrame {
             pst.execute();
         JOptionPane.showMessageDialog(null, "Actualizacion guardada");
          
-        } catch (HeadlessException | SQLException e) {
+    } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar");
-        }
+    }
         
     }
     
