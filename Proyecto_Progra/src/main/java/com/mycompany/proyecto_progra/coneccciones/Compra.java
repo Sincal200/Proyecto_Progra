@@ -27,6 +27,8 @@ public class Compra extends javax.swing.JFrame {
     public Double parcial;
     public Double operacion;
     public Double total1;
+    public Double operacion1;
+    public Double total2;
     Connection con = null;
     
     public Connection getConnection(){
@@ -641,6 +643,9 @@ public class Compra extends javax.swing.JFrame {
         info[5] = txtMonto.getText();
         String codigo = (String) modelo.getValueAt(tb1Producto.getSelectedRow(), 3);
         System.out.println(codigo);
+        
+        operacion = Double.parseDouble(txtMonto.getText()) ;
+        total = total - parcial;
         try{ 
             if(Integer.parseInt (txtCantidad.getText()) > Integer.parseInt (codigo)){
                 int diferencia = (Integer.parseInt (txtCantidad.getText()) - Integer.parseInt (codigo));
@@ -653,6 +658,13 @@ public class Compra extends javax.swing.JFrame {
                 pst.setString(2, jTextCode.getText());
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
+                parcial = Double.parseDouble(txtMonto.getText());
+                total2 = total + parcial;
+                jTextField7.setText(Double.toString(total2));
+                total1 = (total2 * 0.12) + total2;
+                jTextField8.setText(Double.toString(total1));
+                total = total2;
+
             }else{
                 int diferencia = (Integer.parseInt (codigo) - Integer.parseInt (txtCantidad.getText()));
                 String dif = String.valueOf(diferencia);
@@ -664,6 +676,13 @@ public class Compra extends javax.swing.JFrame {
                 pst.setString(2, jTextCode.getText());
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
+                parcial = Double.parseDouble(txtMonto.getText());
+                total2 = total + parcial;
+                jTextField7.setText(Double.toString(total2));
+                total1 = (total2 * 0.12) + total2;
+                jTextField8.setText(Double.toString(total1));
+                total = total2;
+
             }
                 
             }catch(Exception e){
@@ -684,6 +703,8 @@ public class Compra extends javax.swing.JFrame {
             txtPrecio.setText(tb1Producto.getValueAt(seleccion,4).toString());
             txtMonto.setText(tb1Producto.getValueAt(seleccion,5).toString());
             filas = seleccion;
+            
+            
         
     }//GEN-LAST:event_tb1ProductoMouseClicked
 
