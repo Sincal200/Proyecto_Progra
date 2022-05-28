@@ -159,7 +159,6 @@ public class Compra extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Oxxo_Logo.svg (1).png"))); // NOI18N
-        jLabel12.setText("jLabel12");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 190, 110));
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
@@ -185,7 +184,7 @@ public class Compra extends javax.swing.JFrame {
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 110, 37));
 
         jButton6.setBackground(new java.awt.Color(255, 51, 51));
-        jButton6.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 11)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 10)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("INVENTORY");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -534,7 +533,7 @@ public class Compra extends javax.swing.JFrame {
                 pst.setString(1, txtCantidad.getText());
                 pst.setString(2, jTextCode.getText());
                 pst.execute();
-                JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
+                
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Ingrese la cantidad a comprar");
             }
@@ -569,7 +568,7 @@ public class Compra extends javax.swing.JFrame {
                 pst.setString(1, txtCantidad.getText());
                 pst.setString(2, jTextCode.getText());
                 pst.execute();
-                JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
+                
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "error");
             }
@@ -614,7 +613,7 @@ public class Compra extends javax.swing.JFrame {
                 pst.setString(1, dif);
                 pst.setString(2, jTextCode.getText());
                 pst.execute();
-                JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
+                JOptionPane.showMessageDialog(null, "Actulizado");
                 parcial = Double.parseDouble(txtMonto.getText());
                 total2 = total + parcial;
                 jTextField7.setText(Double.toString(total2));
@@ -632,7 +631,7 @@ public class Compra extends javax.swing.JFrame {
                 pst.setString(1, dif);
                 pst.setString(2, jTextCode.getText());
                 pst.execute();
-                JOptionPane.showMessageDialog(null, "CAMBIADO PAA");
+                JOptionPane.showMessageDialog(null, "Actulizado");
                 parcial = Double.parseDouble(txtMonto.getText());
                 total2 = total + parcial;
                 jTextField7.setText(Double.toString(total2));
