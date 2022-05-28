@@ -72,10 +72,31 @@ public class Compra extends javax.swing.JFrame {
         jTextProduct.setText("");
     }
     
-    private void descontar(){
-        //Producto descontar = new Producto();( `Code`, `Product`, `OUM`, `Quantity`, `Price`, `Amount`)"
-                //+"VALUE ( ?, ?, ?, ?, ?, ?)
-        
+    private void save(){
+        try {
+            Sales facturas = new Sales();
+            facturas.setCustomer(jTextField1.getText().toString());
+            facturas.setNumber(jTextField10.getText().toString());
+            facturas.setRemarks(jTextField9.getText().toString());
+            facturas.setMoney(jComboBox4.getSelectedItem().toString());
+            facturas.setTotal(Double.parseDouble(jTextField8.getText()));
+            
+            String insert = "INSERT INTO `sales` (`Customer`, `Number`, `Remarks`, `Money`, `Total`) "
+                    + "VALUES (?, ?, ?, ?, ?);";
+
+            PreparedStatement pst = conexion.prepareStatement(insert);
+            pst.setString(1, facturas.getCustomer());
+            pst.setString(2, facturas.getNumber());
+            pst.setString(3, facturas.getRemarks());
+            pst.setString(4, facturas.getMoney());
+            pst.setDouble(5, facturas.getTotal());
+
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Datos guardados");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al guardar");
+        }
     }    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -104,7 +125,6 @@ public class Compra extends javax.swing.JFrame {
         txtMonto = new javax.swing.JTextField();
         jTextProduct = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -292,13 +312,6 @@ public class Compra extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("New");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
         jButton8.setText("Remove");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -367,6 +380,11 @@ public class Compra extends javax.swing.JFrame {
         });
 
         jButton10.setText("Save");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Credit", "Contand" }));
 
@@ -412,8 +430,7 @@ public class Compra extends javax.swing.JFrame {
                                 .addComponent(jButton12)
                                 .addGap(26, 26, 26)
                                 .addComponent(jButton8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7))
+                                .addGap(78, 78, 78))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jLabel13)
@@ -467,7 +484,6 @@ public class Compra extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton7)
                             .addComponent(jButton8)
                             .addComponent(jButton4)
                             .addComponent(jButton11)
@@ -730,18 +746,12 @@ public class Compra extends javax.swing.JFrame {
             filas = seleccion;
     }//GEN-LAST:event_jButton8MouseClicked
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        for (int i = 0; i < tb1Producto.getRowCount(); i++) {
-        modelo.removeRow(i);
-        i-=1;
-}
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         for (int i = 0; i < tb1Producto.getRowCount(); i++) {
         modelo.removeRow(i);
         i-=1;
-        
+
+        }
         txtCantidad.setText("");
         txtPrecio.setText("");
         txtMonto.setText("");  
@@ -753,16 +763,33 @@ public class Compra extends javax.swing.JFrame {
         jTextField9.setText("");
         jTextField10.setText("");
         
-        
-        }
-        
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Ventas VEN = new Vnetas();
-        VEN.setVisible(false);
+        Ventas VEN = new Ventas();
+        VEN.setVisible(true);
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        save();
+        for (int i = 0; i < tb1Producto.getRowCount(); i++) {
+        modelo.removeRow(i);
+        i-=1;
+
+        }
+        txtCantidad.setText("");
+        txtPrecio.setText("");
+        txtMonto.setText("");  
+        jTextCode.setText("");
+        jTextProduct.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+        jTextField1.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+        
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     public static void main(String args[]) {
         
@@ -785,7 +812,6 @@ public class Compra extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox2;

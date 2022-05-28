@@ -371,8 +371,6 @@ public class inventario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton4.getAccessibleContext().setAccessibleParent(jLabel7);
-
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 50));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paint-grunge-background_1409-1619.jpg"))); // NOI18N
