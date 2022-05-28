@@ -8,7 +8,6 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.mycompany.proyecto_progra.coneccciones.inventario;
-import com.mycompany.proyecto_progra.vista.Ventas;
 import java.awt.event.KeyEvent;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -115,7 +114,6 @@ public class Compra extends javax.swing.JFrame {
         tb1Producto = new javax.swing.JTable();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
@@ -126,6 +124,7 @@ public class Compra extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         jButton2.setText("jButton2");
 
@@ -141,11 +140,6 @@ public class Compra extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(0, 255, 255));
         jButton3.setText("Sales");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         jButton6.setBackground(new java.awt.Color(0, 255, 255));
         jButton6.setText("Inventory");
@@ -293,6 +287,11 @@ public class Compra extends javax.swing.JFrame {
         });
 
         jButton7.setText("New");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Remove");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -352,11 +351,14 @@ public class Compra extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel13.setText("Customer");
 
         jButton9.setText("Cancel");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Save");
 
@@ -410,16 +412,16 @@ public class Compra extends javax.swing.JFrame {
                                 .addGap(3, 3, 3)
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(28, 28, 28)
                                 .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(37, 37, 37)
                                 .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton10)
@@ -468,7 +470,6 @@ public class Compra extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jButton9)
                     .addComponent(jButton10)
@@ -476,7 +477,8 @@ public class Compra extends javax.swing.JFrame {
                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -722,10 +724,33 @@ public class Compra extends javax.swing.JFrame {
             filas = seleccion;
     }//GEN-LAST:event_jButton8MouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Ventas VEN = new Ventas();
-        VEN.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        for (int i = 0; i < tb1Producto.getRowCount(); i++) {
+        modelo.removeRow(i);
+        i-=1;
+}
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        for (int i = 0; i < tb1Producto.getRowCount(); i++) {
+        modelo.removeRow(i);
+        i-=1;
+        
+        txtCantidad.setText("");
+        txtPrecio.setText("");
+        txtMonto.setText("");  
+        jTextCode.setText("");
+        jTextProduct.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+        jTextField1.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+        
+        
+        }
+        
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     public static void main(String args[]) {
         
@@ -752,7 +777,6 @@ public class Compra extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -773,6 +797,7 @@ public class Compra extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextCode;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
