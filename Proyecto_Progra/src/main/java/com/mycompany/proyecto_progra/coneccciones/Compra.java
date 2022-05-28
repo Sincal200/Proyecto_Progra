@@ -149,7 +149,6 @@ public class Compra extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         jButton2.setText("jButton2");
 
@@ -166,13 +165,13 @@ public class Compra extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton5.setBackground(new java.awt.Color(255, 51, 51));
-        jButton5.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("PURCHASE");
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 110, 37));
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 170, 37));
 
         jButton3.setBackground(new java.awt.Color(255, 51, 51));
-        jButton3.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("SALES");
         jButton3.setToolTipText("");
@@ -181,10 +180,10 @@ public class Compra extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 110, 37));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 170, 37));
 
         jButton6.setBackground(new java.awt.Color(255, 51, 51));
-        jButton6.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 10)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("INVENTORY");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -192,14 +191,14 @@ public class Compra extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 110, 37));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 170, 37));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paint-grunge-background_1409-1619.jpg"))); // NOI18N
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 630));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 630));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 130, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 190, -1));
 
-        jPanel3.setBackground(new java.awt.Color(204, 0, 102));
+        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -448,10 +447,7 @@ public class Compra extends javax.swing.JFrame {
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 70, 100, 510));
 
-        jLabel1.setBackground(new java.awt.Color(255, 0, 102));
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1070, 630));
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 6, 1170, 630));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 6, 1170, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -744,7 +740,6 @@ public class Compra extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
