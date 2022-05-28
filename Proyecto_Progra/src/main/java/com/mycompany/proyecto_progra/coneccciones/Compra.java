@@ -8,6 +8,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.mycompany.proyecto_progra.coneccciones.inventario;
+import com.mycompany.proyecto_progra.vista.Ventas;
 import java.awt.event.KeyEvent;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -140,6 +141,11 @@ public class Compra extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(0, 255, 255));
         jButton3.setText("Sales");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(0, 255, 255));
         jButton6.setText("Inventory");
@@ -751,6 +757,12 @@ public class Compra extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Ventas VEN = new Vnetas();
+        VEN.setVisible(false);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
         
